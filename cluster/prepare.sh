@@ -1,5 +1,13 @@
 #!/bin/bash
 
+argv_host=$1
+echo $argv_host
+
+apt update
+
+# common installation
+apt install -y openssh-server apt-transport-https ca-certificates curl net-tools docker.io
+
 # modify hostname
 hostnamectl hostname $argv_host
 
