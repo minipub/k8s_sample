@@ -11,7 +11,7 @@ EOF
 
 apt update
 
-apt install kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
+apt install -y kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
 
 apt-mark hold kubeadm kubelet kubectl
 
