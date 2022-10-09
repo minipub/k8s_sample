@@ -6,7 +6,10 @@ echo $argv_host
 apt update
 
 # common installation
-apt install -y openssh-server apt-transport-https ca-certificates curl net-tools docker.io
+apt install -y openssh-server apt-transport-https ca-certificates curl net-tools vim docker.io
+
+# add group docker to current user
+usermod -aG docker $USER
 
 # modify hostname
 hostnamectl hostname $argv_host

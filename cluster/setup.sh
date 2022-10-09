@@ -35,6 +35,8 @@ EOF
 chmod +x pull.sh
 
 if [ $node_type == "master" ]; then
+	echo "master node branch."
+
 	# quick start k8s master node
 	# using the last line of the installation.out `kubeadm join` to make worker node easy to join cluster
 	kubeadm init --pod-network-cidr=10.0.0.0/16 --apiserver-advertise-address=192.168.56.101 --kubernetes-version=v1.23.3 > installation.out 2>&1
@@ -58,5 +60,6 @@ if [ $node_type == "master" ]; then
 	# Now STATUS is Ready
 	# kubectl get node
 else
+	echo "worker node branch."
 
 fi
