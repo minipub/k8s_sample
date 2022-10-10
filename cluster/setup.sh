@@ -62,4 +62,10 @@ if [ $node_type == "master" ]; then
 else
 	echo "worker node branch."
 
+	# copy $HOME/.kube/config of master node to worker node
+	# or, master node could not be discovered on worker node
+	mkdir -p $HOME/.kube
+	scp k8s-master:$HOME/.kube/config $HOME/.kube/config
+	chown $(id -u):$(id -g) $HOME/.kube/config
+
 fi
