@@ -2,6 +2,10 @@
 
 node_type=$1
 
+## short alias for generating yaml config
+## easy to used with kubectl run & create
+echo 'export OUT="--dry-run=client -o=yaml"' >> ~/.bashrc
+
 # add k8s aliyun apt image source
 curl "https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg" | sudo apt-key add -
 
