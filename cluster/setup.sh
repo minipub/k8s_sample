@@ -72,4 +72,34 @@ else
 	scp k8s-master:$HOME/.kube/config $HOME/.kube/config
 	chown $(id -u):$(id -g) $HOME/.kube/config
 
+	cat <<RLEOF | tee /etc/rc.local
+#!/bin/bash
+
+cat <<EOF | tee /run/flannel/subnet.env
+FLANNEL_NETWORK=10.0.0.0/16
+FLANNEL_SUBNET=10.0.0.1/24
+FLANNEL_MTU=1450
+FLANNEL_IPMASQ=true
+EOF
+RLEOF
+
+	chmod +x /etc/rc.local
+
+	cat <<EOF | tee /lib/systemd/system/rc-local.service
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 fi
