@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  age: "2"
+  animal: cat
+  food: fish
+  mama: haitu
+  name: miaomiao
+  papa: dongzi
+kind: ConfigMap
+metadata:
+  name: my-cm

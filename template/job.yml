@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+spec:
+  template:
+    spec:
+      containers:
+      - command:
+        - "/bin/sh"
+        - "-c"
+        - "sleep 1000 && echo done"
+        image: busybox
+        name: myjob
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Never

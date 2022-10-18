@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sleep-job
+spec:
+  activeDeadlineSeconds: 15
+  backoffLimit: 2
+  completions: 3
+  parallelism: 2
+  template:
+    spec:
+      #activeDeadlineSeconds: 30
+      #terminationGracePeriodSeconds: 30
+      containers:
+      - command:
+        - "/bin/sh"
+        - "-c"
+        - "sleep $(($RANDOM % 4 + 1)) && echo done"
+        image: busybox
+        name: sleep-job
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Never
